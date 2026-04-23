@@ -1,0 +1,155 @@
+<div class="register-container">
+  <div class="register-card">
+    <!-- Header Section -->
+    <div class="register-header">
+      <div class="register-logo">
+        <span class="logo-icon">🐾</span>
+        <h1>Great Pets Near Me</h1>
+      </div>
+      <h2>Create Your Account</h2>
+      <p>Join our community and start your pet adoption journey today</p>
+    </div>
+
+    <!-- Register Form -->
+    <form class="register-form" (ngSubmit)="onSubmit()">
+      <!-- Username Field -->
+      <div class="form-group">
+        <label for="username" class="form-label">Username</label>
+        <div class="input-container">
+          <span class="input-icon"></span>
+          <input
+            type="text"
+            id="username"
+            [(ngModel)]="userData.username"
+            name="username"
+            placeholder="Choose a username"
+            required
+            class="form-input"
+            [class.invalid]="error"
+          >
+        </div>
+      </div>
+
+      <!-- Email Field -->
+      <div class="form-group">
+        <label for="email" class="form-label">Email Address</label>
+        <div class="input-container">
+          <span class="input-icon"></span>
+          <input
+            type="email"
+            id="email"
+            [(ngModel)]="userData.email"
+            name="email"
+            placeholder="Enter your email address"
+            required
+            class="form-input"
+            [class.invalid]="error"
+          >
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <div class="input-container">
+          <span class="input-icon"></span>
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            id="password"
+            [(ngModel)]="userData.password"
+            name="password"
+            placeholder="Create a strong password"
+            required
+            class="form-input"
+            [class.invalid]="error"
+          >
+          <button type="button" class="password-toggle" (click)="togglePasswordVisibility()">
+            <span class="toggle-icon">{{ showPassword ? 'No' : '🔒' }}</span>
+          </button>
+        </div>
+        <div class="password-strength" *ngIf="userData.password">
+          <div class="strength-bar" [class]="getPasswordStrength()">
+            <div class="strength-fill" [style.width.%]="getPasswordStrengthPercentage()"></div>
+          </div>
+          <span class="strength-text">{{ getPasswordStrengthText() }}</span>
+        </div>
+      </div>
+
+      <!-- Role Selection -->
+      <div class="form-group">
+        <label for="role" class="form-label">Account Type</label>
+        <div class="role-selection">
+          <div class="role-option" [class.selected]="userData.role === 'customer'" (click)="selectRole('customer')">
+            <div class="role-icon">
+              <img src="icons/family-love-heart-shape-21407.png" alt="Family icon">
+            </div>
+            <div class="role-info">
+              <div class="role-title">Pet Adopter</div>
+              <div class="role-description">I want to adopt a pet</div>
+            </div>
+            <div class="role-check">✓</div>
+          </div>
+          <div class="role-option" [class.selected]="userData.role === 'shelter_staff'" (click)="selectRole('shelter_staff')">
+            <div class="role-icon">
+              <img src="icons/home-163.png" alt="Shelter icon">
+            </div>
+            <div class="role-info">
+              <div class="role-title">Shelter Staff</div>
+              <div class="role-description">I work at an animal shelter</div>
+            </div>
+            <div class="role-check">✓</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Terms Agreement -->
+      <div class="terms-agreement">
+        <label class="checkbox-container">
+          <input type="checkbox" [(ngModel)]="agreeToTerms" name="agreeToTerms" required>
+          <span class="checkmark"></span>
+          I agree to the <a href="javascript:void(0)" class="terms-link">Terms of Service</a> and <a href="javascript:void(0)" class="terms-link">Privacy Policy</a>
+        </label>
+      </div>
+
+      <!-- Error Message -->
+      <div *ngIf="error" class="error-message">
+        <span class="error-icon">
+          <img src="icons/warning-sign-9749.png" alt="Warning icon">
+        </span>
+        {{ error }}
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="register-btn" [disabled]="isLoading || !agreeToTerms">
+        <span *ngIf="!isLoading">Create Account</span>
+        <span *ngIf="isLoading" class="loading-spinner">
+          <span class="spinner"></span>
+          Creating Account...
+        </span>
+      </button>
+    </form>
+
+    <!-- Divider -->
+    <div class="divider">
+      <span>Already have an account?</span>
+    </div>
+
+    <!-- Login Link -->
+    <div class="login-section">
+      <p>Already registered? <a routerLink="/login" class="login-link">Sign in here</a></p>
+    </div>
+  </div>
+
+  <!-- Background Illustration -->
+  <div class="register-illustration">
+    <div class="floating-pet pet-1">
+      <img src="icons/dog-6501.png" alt="Dog icon">
+    </div>
+    <div class="floating-pet pet-2">
+      <img src="icons/cat-7024.png" alt="Cat icon">
+    </div>
+    <div class="floating-pet pet-3">
+      <img src="icons/rabbit-26727.png" alt="Rabiit icon">
+    </div>
+  </div>
+</div>

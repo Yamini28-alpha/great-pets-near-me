@@ -1,0 +1,16 @@
+<div class="youtube-player-container" *ngIf="videoId">
+  <div class="video-wrapper">
+    <iframe
+      [src]="embedUrl"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      class="youtube-iframe">
+    </iframe>
+  </div>
+  <div class="video-info" *ngIf="showInfo && videoInfo">
+    <h4>{{ videoInfo.title }}</h4>
+    <p class="channel">{{ videoInfo.channelTitle }}</p>
+    <p class="description">{{ videoInfo.description | slice:0:150 }}...</p>
+  </div>
+</div>

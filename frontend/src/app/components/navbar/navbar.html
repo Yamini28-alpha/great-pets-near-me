@@ -1,0 +1,107 @@
+<nav class="navbar">
+  <div class="nav-container">
+    <!-- Brand/Logo -->
+    <div class="nav-brand">
+      <a routerLink="/" class="brand-link">
+        <span class="brand-icon">🐾</span>
+        <span class="brand-text">Great Pets Near Me</span>
+      </a>
+    </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" (click)="toggleMobileMenu()">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+
+    <!-- Navigation Links -->
+    <div class="nav-links" [class.active]="isMobileMenuOpen">
+      <!-- Guest Links -->
+      <div *ngIf="!auth.isLoggedIn()" class="guest-links">
+        <a routerLink="/login" class="nav-link" (click)="closeMobileMenu()">Login</a>
+        <a routerLink="/register" class="nav-link btn-register" (click)="closeMobileMenu()">Register</a>
+      </div>
+
+      <!-- User Links -->
+      <div *ngIf="auth.isLoggedIn()" class="user-links">
+        <div class="user-menu">
+          <button class="user-dropdown-toggle" (click)="toggleUserDropdown()">
+            <span class="user-avatar">
+              {{ getInitials() }}
+            </span>
+            <span class="user-name">{{ currentUser?.username }}</span>
+            <span class="dropdown-arrow">▼</span>
+          </button>
+          <div class="user-dropdown" [class.active]="isUserDropdownOpen">
+            <div class="dropdown-header">
+              <div class="user-info">
+                <span class="user-avatar-small">{{ getInitials() }}</span>
+                <div class="user-details">
+                  <span class="user-display-name">{{ currentUser?.username }}</span>
+                  <span class="user-role">{{ getUserRoleDisplay() }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="dropdown-items">
+              <a href="javascript:void(0)" class="dropdown-item" (click)="openProfileModal(); closeMobileMenu()">
+                <span class="item-icon"></span>
+                Profile
+              </a>
+              <div class="dropdown-divider"></div>
+              <button class="dropdown-item logout-item" (click)="logout()">
+                <span class="item-icon"></span>
+                Logout
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile Modal -->
+  <div *ngIf="showProfileModal" class="modal-overlay" (click)="closeProfileModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <span class="close" (click)="closeProfileModal()">&times;</span>
+      <h2>User Profile</h2>
+      
+      <div *ngIf="currentUser" class="profile-info">
+        <div class="profile-header">
+          <div class="profile-avatar-large">
+            {{ getInitials() }}
+          </div>
+          <div class="profile-main-info">
+            <h3>{{ currentUser.username }}</h3>
+            <span class="user-role-badge">{{ getUserRoleDisplay() }}</span>
+          </div>
+        </div>
+        
+        <div class="profile-details">
+          <div class="detail-group">
+            <label>Email:</label>
+            <span>{{ currentUser.email }}</span>
+          </div>
+          <div class="detail-group">
+            <label>User ID:</label>
+            <span class="user-id">{{ currentUser.id }}</span>
+          </div>
+          
+          <div *ngIf="currentUser.role === 'shelter_staff' && currentUser.shelterId" class="shelter-info">
+            <div class="detail-group">
+              <label>Shelter ID:</label>
+              <span>{{ currentUser.shelterId }}</span>
+            </div>
+          </div>
+          
+          <div *ngIf="currentUser.role === 'shelter_staff' && !currentUser.shelterId" class="no-shelter">
+            <p class="no-shelter-message">No shelter created yet</p>
+            <a [routerLink]="getDashboardRoute()" class="btn btn-primary btn-small" (click)="closeProfileModal()">
+              Create Shelter
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
