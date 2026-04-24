@@ -14,15 +14,14 @@ import { statsRouter } from './routes/stats';
 dotenv.config();
 
 const app: Application = express();
-const port: number = parseInt(process.env.PORT || '10000', 10);
+const port = process.env.PORT || 10000;
 
 // Middleware
 app.use(cors({
   origin: [
     'http://localhost:4200'
   ],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
 
@@ -42,7 +41,7 @@ app.use('/api/adoptions', adoptionRouter);
 app.use('/api/vaccinations', vaccinationRouter);
 app.use('/api/stats', statsRouter);
 
-// Start server FIRST, then connect DB
+// Start server FIRST
 app.listen(port, '0.0.0.0', async () => {
   console.log(`Server is running on port ${port}`);
 
