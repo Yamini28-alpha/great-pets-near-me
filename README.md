@@ -49,25 +49,21 @@ A full-stack pet adoption platform where users can browse, adopt pets, and manag
 ---
 
 ### 🔐 Login Page
-<!-- Add screenshot later -->
 ![Login Page](screenshots/login.png)
 
 ---
 
 ### 📝 Register Page
-<!-- Add screenshot later -->
 ![Register Page](screenshots/register.png)
 
 ---
 
-### 🐾 Pets Listing
-<!-- Add screenshot later -->
-![Pets](screenshots/pets.png)
+### 👤 User Dashboard
+![User Dashboard](screenshots/user-dashboard.png)
 
 ---
 
-### 📊 Dashboard / Stats
-<!-- Add screenshot later -->
+### 📊 Shelter Dashboard
 ![Dashboard](screenshots/dashboard.png)
 
 ---
