@@ -1,11 +1,19 @@
-# Frontend 
+# 🐾 Great Pets Near Me
 
-npm install
+A full-stack pet adoption platform where users can browse and adopt pets from shelters.
 
-ng serve
+## 🚀 Live Demo
+https://unique-quokka-15e059.netlify.app
 
-# Backend 
+## 💻 GitHub
+https://github.com/Yamini28-alpha/great-pets-near-me
 
-npm install 
+## 🛠️ Tech Stack
+Angular, Node.js, Express, MongoDB
 
-npm run dev
+## ✨ Features
+- User Login & Registration
+- Browse Pets
+- Shelter Dashboard
+- Customer Dashboard
+- Adoption Process
