@@ -3,6 +3,7 @@ import { connectDB } from './config/db';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
+// Routes
 import { authRouter } from './routes/auth';
 import { shelterRouter } from './routes/shelter'; 
 import { petRouter } from './routes/pet';
@@ -15,27 +16,29 @@ dotenv.config();
 
 const app: Application = express();
 
-// ✅ keep parseInt (good)
+// ✅ Use Render port
 const port: number = parseInt(process.env.PORT || '10000', 10);
 
-// ⚠️ allow your future deployed frontend too (optional for now)
+// ✅ FIXED CORS (VERY IMPORTANT)
 app.use(cors({
   origin: [
-    'http://localhost:4200'
+    'http://localhost:4200',
+    'https://unique-quokka-15e059.netlify.app'   // 🔥 YOUR LIVE FRONTEND
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
 
+// Middleware
 app.use(express.json());
 
-// ✅ add a root test route (VERY IMPORTANT for Render)
+// ✅ Root test route (for Render health check)
 app.get('/', (req: Request, res: Response) => {
   res.send('Great Pets Near Me backend is running successfully.');
 });
 
-// routes
+// Routes
 app.use('/api/auth', authRouter); 
 app.use('/api/shelters', shelterRouter);
 app.use('/api/pets', petRouter);
@@ -44,7 +47,7 @@ app.use('/api/adoptions', adoptionRouter);
 app.use('/api/vaccinations', vaccinationRouter);
 app.use('/api/stats', statsRouter);
 
-// ❗ move DB connection AFTER server starts
+// ✅ Start server + connect DB
 app.listen(port, '0.0.0.0', async () => {
   console.log(`Server is running on port ${port}`);
 
