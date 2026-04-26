@@ -10,6 +10,18 @@ A full-stack pet adoption platform where users can browse, adopt pets, and manag
 
 ---
 
+## 🔑 Demo Credentials
+
+### 🏠 Shelter Staff
+Email: demo@shelter.com  
+Password: Demo@1234  
+
+### 👤 Pet Adopter
+Email: user@demo.com  
+Password: User@1234  
+
+---
+
 ## 📌 Features
 
 - 👤 User Authentication (Register / Login)
@@ -19,6 +31,8 @@ A full-stack pet adoption platform where users can browse, adopt pets, and manag
 - 💉 Vaccination Tracking
 - 📊 Dashboard & Stats
 - 🔐 Secure API with JWT
+- 🎥 YouTube Video Integration
+- 🔄 Role-Based Access (Shelter vs Adopter)
 
 ---
 
@@ -65,6 +79,11 @@ A full-stack pet adoption platform where users can browse, adopt pets, and manag
 
 ### 📊 Shelter Dashboard
 ![Dashboard](screenshots/dashboard.png)
+
+---
+
+### 📋 Adoption Applications
+![Applications](screenshots/applications.png)
 
 ---
 
